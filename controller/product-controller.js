@@ -8,6 +8,7 @@ const insertProducts=async(req,res)=>{
 }
 
 const fetchProducts=async (req,res)=>{
+    try{
     const {category}=req.params
     // const result=await product.find({category:category})
     const result=await product.find({
@@ -18,6 +19,10 @@ const fetchProducts=async (req,res)=>{
     })
 
     return res.send(result)
+    }catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+    }
 }
 
 const ProductOne=async (req,res)=>{
