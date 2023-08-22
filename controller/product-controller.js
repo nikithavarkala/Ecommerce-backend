@@ -8,9 +8,9 @@ const insertProducts=async(req,res)=>{
 }
 
 const fetchProducts=async (req,res)=>{
-    try{
     const {category}=req.params
     // const result=await product.find({category:category})
+     try{
     const result=await product.find({
         $or: [
             { category: category },
