@@ -1,4 +1,3 @@
-const bcrypt=require("bcryptjs");
 const cors=require('cors')
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);

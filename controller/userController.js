@@ -1,7 +1,6 @@
 const user=require('../prjctStructures/userStructure')
 const saltround=10
-// const bcrypt=require('bcrypt')
-const bcrypt=require('bcryptjs')
+const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 const secretKey='nikitha'
 
