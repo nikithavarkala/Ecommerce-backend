@@ -71,21 +71,27 @@ const addtocart = async (req, res) => {
 
 const fetchcart=async (req,res)=>{
     // const userId=req.params.userId
-    const token = req.headers.authorization.split(' ')[1]; 
+    const token = req.headers.authorization; 
 
+    try{
     if(!token){
         return res.send({msg:'Please log in to fetch the cart.'})
     }
     else{
         try{
-            const decodedToken = jwt.verify(token, secretKey);
-
-            const { userId } = decodedToken;
+            // const token = req.headers.authorization.split(' ')[1]; 
+            const decodedToken = token.split(' ')[1];
+            // const decodedToken = jwt.verify(token, secretKey);
+            const { userId } = jwt.verify(decodedToken, secretKey);
+            // const { userId } = decodedToken;
             const userCart=await cart.find({userId:userId})
             return res.send(userCart)
         }catch(err){
             console.log(err);
         }
+    }
+    }catch(err){
+        return res.status(500).json({ error: "Internal server error" });
     }
 }
 
