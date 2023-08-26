@@ -23,7 +23,7 @@ const signup=async (req,res)=>{
         })
         const result=await tempobj.save();
         // console.log("id:",result._id)
-        const token=jwt.sign({ userId: result._id },secretKey,{expiresIn:'8h'})
+        const token=jwt.sign({ userId: result._id },secretKey)
         return res.send({msg:"success!!",token:token,email:email})
     }
 }
@@ -36,7 +36,7 @@ const login = async (req, res) => {
         const valid = bcrypt.compareSync(password, userLogin.password); 
 
         if (valid) {
-            const token = jwt.sign({ userId: userLogin._id }, secretKey,{expiresIn:'8h'});
+            const token = jwt.sign({ userId: userLogin._id }, secretKey);
             return res.send({ msg: 'success!!', token: token,email:email });
         } 
         else {
